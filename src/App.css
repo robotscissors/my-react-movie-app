@@ -2,9 +2,67 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.movie-card {
+  width:200px;
+  background-color: white;
+  border-radius:5px;
+  border:1px red solid;
+  color:#000;
+  height: 350px;
+  margin: 5px;
+  float: left;
+  position:relative;
+}
+
+.movie-title {
+  max-height: 50px;
+  overflow-y: hidden;
+  margin-top: 34px;
+}
+
+.movie-card h4 {
+  font-size:20px;
+  margin: 5px;
+}
+
+.movie-description {
+  display:block;
+  margin: 0 auto;
+  font-size:10px;
+  height:50px;
+  overflow-y: hidden;
+}
+
+button.movie-button{
+  border:1px red solid;
+  border-radius: 2px;
+  padding:5px 14px;
+  font-size:12px;
+  background-color: rgb( 255, 0, 0, .2);
+
+}
+.movie-image{
+  width:150px;
+  height:200px;
+  background-color: black;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.movie-list {
+  width:860px;
+}
+.movie-button {
+  border: red 1px;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#button-div {
+  position:absolute;
+  bottom: 15px;
+  width: 100%
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,13 +73,25 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 18vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-body {
+  background-color: #282c34;
+  min-height: 18vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding-bottom: 30vh;
 }
 
 .App-link {

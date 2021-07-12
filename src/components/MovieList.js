@@ -1,20 +1,20 @@
-
+import { MovieTitle } from "./MovieTitle";
+import { MovieMoreButton } from "./MovieMoreButton";
+import { MovieImage } from "./MovieImage";
 
 export const MovieList = ({movies}) => {
-const x = [1,2,3];
 
-  const list = x.map((x) =>
-      <li>Hello {x}</li>
-  );
+const list = movies.map((movie, index) =>
+  <div className = "movie-card" key={index}>
+    <MovieImage       movie = {movie} />
+    <MovieTitle       movie = {movie} />
+    <MovieMoreButton  movie = {movie} />
+  </div>
+);
 
-    return(
-    <div className = "movie-card">
-      <h1>Hello</h1>
-      <p>Test</p>
-      <ul>{list}</ul>
+  return(
+    <div className = "movie-list">
+      {list}
     </div>
-    )
-
-
-
+  )
 }

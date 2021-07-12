@@ -1,18 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { MovieList } from './components/MovieList';
 
-const movies = [{"Title":"Hello"}]
+const searchName = "Cutting Edge";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Hello World
-        <MovieList movies={movies}/>
-      </header>
-    </div>
-  );
+  const [movies, setMovies] = useState();
+
+  useEffect(() => {
+    fetch(`http://www.omdbapi.com/?s=${searchName}&apikey=${process.env.REACT_APP_MOVIE_API_KEY}`)
+      .then(res => res.json())
+      .then(data => setMovies(data['Search']));
+  }, []);
+
+  if (movies){
+    return (
+      <div className="App">
+        <header className="App-header">
+          Movie List
+        </header>
+        <div className="App-body">
+          <MovieList movies={movies}/>
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
 }
 
 export default App;
