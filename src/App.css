@@ -71,6 +71,23 @@ button.movie-button{
   }
 }
 
+.App-search {
+  display: block;
+  padding: 5px;
+}
+
+input#movie-search {
+  padding: 5px;
+}
+
+button{
+  padding:5px;
+}
+
+.movie-search {
+  margin: 0 16px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 18vh;
