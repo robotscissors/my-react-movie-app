@@ -7,19 +7,34 @@ import MovieService from "../services/movie.service";
 
 const movieService = new MovieService();
 
-export const MovieList = () => {
+export const MovieList = ({searchTerm, searchType}) => {
   const [movies, setMovies] = useState();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState();
 
-  const getMovieList = async (title) => {
-    const movies = await movieService.getMoviesByTitle(title);
+  const getMovieList = async (title, type, page) => {
+    const movies = await movieService.getMoviesByTitle(title, type, page);
+    setTotalPages(Math.ceil(movies.totalResults/10))
     setMovies(movies.Search);
   };
+  const movePage = (e, increment) => {
+    e.preventDefault();
+    if ((page + increment) === 0){
+      setPage(1)
+    } else if ((page + increment) > totalPages) {
+      setPage(totalPages)
+    } else {
+      setPage(page + increment);
+    }
+
+  }
 
   useEffect(() => {
-    getMovieList('flintstones');
-  }, []);
+    getMovieList(searchTerm, searchType, page);
+  }, [searchTerm, searchType, page]);
 
-  if (movies){
+
+  if (movies && searchTerm){
     const list = movies.map((movie, index) =>
       <div className = "movie-card" key={index}>
         <MovieImage       movie = {movie} />
@@ -29,11 +44,23 @@ export const MovieList = () => {
     );
 
     return (
-      <div className = "movie-list">
-      {list}
+      <div className = "results-container">
+        <div className = "results-pagination">
+          <button className="pagination" onClick={(e) => movePage(e ,-1)}> « </button>
+          <button className="pagination" onClick={(e) => movePage(e, 1)}> » </button>
+          <div className="page-number"> Page: {page} of {totalPages}</div>
+        </div>
+        <div style={{clear:'both'}}></div>
+        <div className = "movie-list">
+          {list}
+        </div>
       </div>
     )
   } else {
-    return null;
+    return (
+      <div className = "results-container">
+        No results found.
+      </div>
+    )
   }
 }

@@ -1,17 +1,50 @@
-export const SearchBar = () => {
+import { useState, useEffect } from "react";
+
+export const SearchBar = ({sendSearchData}) => {
+
+
+  const [formData, setFormData] = useState({
+    movieSearch: '',
+    movieType: ''
+  });
+
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData({...formData, [name]: value })
+
+    // sendSearchData(formData);
+  }
+
+  const onInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData, [name]: value })
+  }
+
+
+  useEffect(() => {
+    sendSearchData(formData);
+  }, [formData]);
+
+
   return (
     <div className="App-search">
-     <form action="/" method="get">
-        <label htmlFor="header-search">
-            <span className="movie-search">Search Movies</span>
-        </label>
+     <form onSubmit={(e) => onFormSubmit(e)}>
         <input
+            onChange={(e) => onInputChange(e)}
             type="text"
-            id="movie-search"
             placeholder="Search movie names"
-            name="movie-search"
+            name="movieSearch"
+            id="movieSearch"
         />
-        <button type="submit">Search</button>
+        <select name="movieType" id="movieType" onChange={(e) => onInputChange(e)}>
+          <option value="">Type</option>
+          <option value="movie">Movie</option>
+          <option value="series">Series</option>
+          <option value="episode">Episode</option>
+        </select>
+        <button id="submit" type="submit">Search</button>
     </form>
     </div>
   )

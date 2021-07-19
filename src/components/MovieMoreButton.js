@@ -1,5 +1,5 @@
 import {MovieDetails} from './MovieDetails'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {Modal} from './Modal'
 
 

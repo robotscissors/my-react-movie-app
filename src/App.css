@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  height:800px;
 }
 
 .movie-card {
@@ -74,18 +76,47 @@ button.movie-button{
 .App-search {
   display: block;
   padding: 5px;
+  margin: 10px;
 }
 
-input#movie-search {
-  padding: 5px;
+input#movieSearch {
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+input[id='movieSearch']{
+  margin-right: 5px;
 }
 
-button{
-  padding:5px;
+select#movieType {
+  padding: 10px;
+  border-radius: 5px;
+  width: 85px;
+  color: grey;
 }
 
-.movie-search {
+button#submit{
+  padding:12px;
+  margin:10px;
+  border-radius: 5px;
+}
+
+.movieSearch {
   margin: 0 16px;
+}
+
+.results-pagination{
+  float:right;
+  font-size: 3vh;
+  margin: 10px 15px;
+}
+
+.pagination{
+  cursor: pointer;
+}
+
+.page-number{
+  padding-top: 5px;
 }
 
 .App-header {
@@ -97,6 +128,8 @@ button{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 50px 10px 0px 10px;
+  font-size: 10vh;
 }
 
 .App-body {
